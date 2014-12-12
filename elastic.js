@@ -90,9 +90,14 @@ angular.module('monospaced.elastic', [])
           // Opera returns max-height of -1 if not set
           maxHeight = maxHeight && maxHeight > 0 ? maxHeight : 9e4;
 
-          // append mirror to the DOM
-          if (mirror.parentNode !== document.body) {
-            angular.element(document.body).append(mirror);
+          if(attrs.msdElasticAppendTo && attrs.msdElasticAppendTo === 'parent') {
+            $ta.parent().append(mirror);
+          }
+          else {
+            // append mirror to the DOM, body
+            if (mirror.parentNode !== document.body) {
+              angular.element(document.body).append(mirror);
+            }  
           }
 
           // set resize and apply elastic
